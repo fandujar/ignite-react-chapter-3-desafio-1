@@ -1,1 +1,43 @@
-// TODO
+.postLoading {
+    margin:auto;
+    max-width: 720px;
+    color: var(--info);
+}
+
+.postHeaderContainer {
+    margin:auto;
+    max-width: 700px;
+    strong {
+        font-weight: 700;
+        font-size: 3rem;
+        color: var(--head);
+    }
+}
+
+.postContentContainer {
+    margin: 4rem auto;
+    max-width: 700px;
+    strong {
+        font-weight: 700;
+        font-size: 2.25rem;
+        line-height: 3.15rem;
+        color: var(--head);
+        display: block;
+        margin-top: 3.5rem;
+    }
+
+    pre {
+        margin-top: 2.75rem;
+        
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        font-size: 1.125rem;
+        line-height: 1.575rem;
+
+        white-space: pre-wrap;
+        word-break: keep-all;
+
+        color: var(--body);
+    }
+}
+

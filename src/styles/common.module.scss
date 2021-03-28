@@ -1,6 +1,25 @@
 $container-max-width: 1120px;
 $content-max-width: 720px;
 
+.infoContainer {
+    display: flex;
+    align-items:center;
+    margin-top: 1.5rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: var(--info);
+
+    time {
+        display: flex;
+    }
+
+    span {
+        display: flex;
+        margin-left: 1.125rem;
+    }
+}
+
 .icon{
     width: 20px;
     height: 20px;

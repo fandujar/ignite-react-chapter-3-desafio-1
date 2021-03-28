@@ -1,12 +1,14 @@
 import { GetStaticProps } from 'next';
-import {FiCalendar, FiUser} from 'react-icons/fi';
 import Header from '.././components/Header'
-import Prismic from '@prismicio/client'
-import { getPrismicClient } from '../services/prismic';
-import { format } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
 import Link from 'next/link'
 
+import Prismic from '@prismicio/client'
+import { getPrismicClient } from '../services/prismic';
+
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+
+import {FiCalendar, FiUser} from 'react-icons/fi';
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
 import { useEffect, useState } from 'react';
@@ -27,17 +29,17 @@ interface PostPagination {
 }
 
 interface HomeProps {
-  postPagination: PostPagination;
+  postsPagination: PostPagination;
 }
 
-export default function Home({postPagination}: HomeProps) {
+export default function Home({postsPagination}: HomeProps) {
   const [posts, setPosts] = useState([])
   const [nextPage, setNextPage] = useState('')
   
   useEffect(() => {
-    if (postPagination) {
-      setPosts(postPagination.results)
-      setNextPage(postPagination.next_page)
+    if (postsPagination) {
+      setPosts(postsPagination.results)
+      setNextPage(postsPagination.next_page)
     }
   }, []) 
  
@@ -63,18 +65,18 @@ export default function Home({postPagination}: HomeProps) {
       <main >
         <div  className={styles.postsContainer}>
           {posts.map((post) => (
-            <Link key={post.uid} href={`post/${post.uid}`}>
+            <Link key={post.uid} href={`/post/${post.uid}`}>
               <a>
                 <strong>{post.data.title}</strong>
                 <p>{post.data.subtitle}</p>
-                <div className={styles.infoContainer}>
-                  <time><FiCalendar className={commonStyles.icon}/> {post.first_publication_date}</time>
-                  <span><FiUser className={commonStyles.icon}/> {post.data.author}</span>
+                <div className={commonStyles.infoContainer}>
+                  <time><FiCalendar className={commonStyles.icon}/>{post.first_publication_date}</time>
+                  <span><FiUser className={commonStyles.icon}/>{post.data.author}</span>
                 </div>
               </a>
             </Link>
           ))}          
-          {nextPage && <a href="#" onClick={() => loadMore()}>Carregar mais posts</a>}
+          {nextPage && <a onClick={() => loadMore()}>Carregar mais posts</a>}
         </div>
       </main>
     </div>
@@ -101,10 +103,9 @@ export const getStaticProps: GetStaticProps = async () => {
     return 
   })
 
-
   return {
     props: {
-      postPagination: {
+      postsPagination: {
         next_page: postsResponse.next_page,
         results: postsResponse.results
       }
