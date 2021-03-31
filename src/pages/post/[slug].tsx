@@ -13,6 +13,8 @@ import styles from './post.module.scss';
 import Header from '../../components/Header'
 import { useRouter } from 'next/router';
 
+import {Utterances} from '../../components/Utterances'
+
 interface Post {
   first_publication_date: string | null;
   data: {
@@ -84,6 +86,13 @@ export default function Post({post}: PostProps) {
               ))}
             </div>
             ))}
+            <Utterances
+              repo="fandujar/ignite-react-chapter-3-desafio-1"
+              issueTerm="url"
+              label="blog-comments"
+              theme="github-dark"
+              crossorigin="anonymous"
+             />
           </section>
           </>)}
       </main>
